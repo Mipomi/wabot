@@ -1,0 +1,43 @@
+{
+  "prefix": ".",
+  "ownerName": "12s",
+  "support": "ara",
+  "ownerNumber": "628*********",
+  "botNumber": "628yyyyyy",
+  "thumbnail": "path/to/thumbnail.jpg",
+  "menu": [
+    "menu",
+    "info",
+    "tagall",
+    "hiddentag",
+    "confess",
+
+    "mulaitod",
+    "buatroom",
+    "joinroom",
+    "listroom",
+    "gameangka",
+    "gamekata",
+    "kalenderhijriah",
+    "jadwalshalat",
+    "setlok",
+    "removebg",
+    "clearimg",
+    "stiker",
+    "kodebhs",
+    "translate",
+    "apakah",
+    "cckga",
+    "putar",
+    "stop"
+  ],
+
+  "subMenu": [
+    "teskompak",
+    "udhkompk",
+    "tbkangka",
+    "udhangka",
+    "tbkta",
+    "udhkata"
+  ]
+}
