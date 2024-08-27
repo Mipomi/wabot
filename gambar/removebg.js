@@ -19,7 +19,7 @@ const removeBackground = async (media, msg, client) => {
         const response = await axios.post('https://api.remove.bg/v1.0/removebg', formData, {
             headers: {
                 ...formData.getHeaders(),
-                'X-Api-Key': 'acRVShYhRugs4mPZ1st1nKLp'
+                'X-Api-Key': 'YOUR_API_REMOVE_BG'
             },
             responseType: 'arraybuffer'
         });
