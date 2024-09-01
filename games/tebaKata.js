@@ -20,7 +20,7 @@ function startWordGuessGame(chatId, client) {
 
 function handleWordGuess(chatId, guess, client, message) {
     if (!activeWordGames.has(chatId)) {
-        message.reply(`Permainan belum dimulai. Gunakan ${prefix}gamekata untuk memulai.`);
+        message.reply(`Permainan belum dimulai. Gunakan ${prefix}${config.menu[10]}a untuk memulai.`);
         return;
     }
 
