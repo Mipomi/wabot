@@ -1,9 +1,10 @@
 <p align="center">
-    <img src="Untitled-1.png" alt="foto bot" width="200"/>
+    <img src="Untitled-1.png" alt="foto bot" width="100"/><br>
+    <b>zeropjt</b>
 </p>
 <p align="center">
   <a href="https://instagram.com/tnyeouu" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" width="50"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" width="25"/>
   </a>
 </p>
 
@@ -17,16 +18,16 @@ untuk instalasi bisa ikuti langkah-langkah berikut:
 
 ```bash
 # Clone repository ini
-git clone https://github.com/Mipomi/wabot.git
+$ git clone https://github.com/Mipomi/wabot.git
 
 # Masuk ke direktori proyek
-cd wabot
+$ cd wabot
 
 # Install dependencies
-npm install
+$ npm install
 
 # Jalankan bot
-npm start
+$ npm start
 ```
 Bot ini membutuhkan beberapa pengaturan awal sebelum digunakan. Buka file `config.json` untuk melakukan konsfigurasi dengan mengganti:
 - genius api key dan remove bg api key dengan api key sendiri
