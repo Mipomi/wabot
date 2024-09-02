@@ -8,11 +8,11 @@
   </a>
 </p>
 
-#zeropjk
+# zeropjk
 
 bot wa sederhana di buat dengan bantuan ai
 
-##instalasi
+## instalasi
 
 untuk instalasi bisa ikuti langkah-langkah berikut:
 
@@ -33,7 +33,7 @@ Bot ini membutuhkan beberapa pengaturan awal sebelum digunakan. Buka file `confi
 - genius api key dan remove bg api key dengan api key sendiri
 - sesuaikan prefix, owner name, support, owner number, dan bot number dengan sesuai keinginan
 
-##fitur yang ada
+## fitur yang ada
 fitur grup:
 |   fitur   |                   deskripsi                       |
 |-----------|---------------------------------------------------|
