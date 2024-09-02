@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="Untitled-1.png" alt="foto bot" width="100"/><br>
+    <img src="Untitled-1.png" alt="foto bot" width="150"/><br>
     <b>zeropjt</b>
 </p>
 <p align="center">
@@ -10,26 +10,29 @@
 
 # zeropjk
 
-bot wa sederhana di buat dengan bantuan ai
+bot wa sederhana di buat dengan bantuan ai dan fitur seadanya, bot ini masih terdapat bug pada fungsi beberapa game nya
 
 ## instalasi
 
 untuk instalasi bisa ikuti langkah-langkah berikut:
 
+Clone repository ini
 ```bash
-# Clone repository ini
 $ git clone https://github.com/Mipomi/wabot.git
-
-# Masuk ke direktori proyek
+```
+Masuk ke direktori proyek
+```bash
 $ cd wabot
-
-# Install dependencies
+```
+Install dependencies
+```bash
 $ npm install
-
-# Jalankan bot
+```
+Jalankan bot
+```bash
 $ npm start
 ```
-Bot ini membutuhkan beberapa pengaturan awal sebelum digunakan. Buka file `config.json` untuk melakukan konsfigurasi dengan mengganti:
+sebelum menjalankan `npm start` Bot ini membutuhkan beberapa pengaturan awal sebelum digunakan. Buka file `config.json` untuk melakukan konsfigurasi dengan mengganti:
 - genius api key dan remove bg api key dengan api key sendiri
 - sesuaikan prefix, owner name, support, owner number, dan bot number dengan sesuai keinginan
 
@@ -39,9 +42,8 @@ fitur grup:
 |-----------|---------------------------------------------------|
 |tagall     |untuk memanggil semua anggota grup                 |
 |hiddentag  |untuk memanggil semua anggota grup secara sembunyi |
-|-----------|---------------------------------------------------|
 
-fitur islami
+fitur islami:
 |   fitur      |               deskripsi                |
 |--------------|----------------------------------------|
 |kalender      |melihat kalender hijriah                |
@@ -49,7 +51,6 @@ fitur islami
 |cari ayat     |mencari ayat Al-Qur'an                  |
 |cari surah    |mencari surah Al-Qur'an                 |
 |set lokasi    |mengatur lokasi untuk jadwal shalat     |
-|--------------|----------------------------------------|
 
 fitur game:
 |   fitur      |
@@ -58,7 +59,6 @@ fitur game:
 |tes kekompakan|
 |tebak angka   |
 |tebak kata    |
-|--------------|
 
 fitur lainnya:
 |   fitur      |               deskripsi                |
@@ -69,12 +69,11 @@ fitur lainnya:
 |translate     |menerjemahkan bahasa                    |
 |roulate       |memutar roulate                         |
 |lirik musik   |mencari lirik musik                     |
-|--------------|----------------------------------------|
 
 Jika kamu tertarik untuk berkontribusi dalam pengembangan bot ini, silakan fork repository ini dan kirim pull request. untuk pertanyaan lebih lanjut bisa hubungi ke instagram di atas.
 
-###Terima kasih untuk:
-chatgtp
-ara
-saya sendiri
-dan semuanya dalam membantu pembuatan bot ini
+### Terima kasih untuk:
+* chatgtp
+* ara
+* saya sendiri
+* dan semuanya dalam membantu pembuatan bot ini
