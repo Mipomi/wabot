@@ -1,8 +1,10 @@
 const activeRouletteGames = new Map();
 
-function startRouletteGame(chatId, client) {
-    const groupChat = client.getChatById(chatId);
-    groupChat.getParticipants().then(participants => {
+async function startRouletteGame(chatId, client) {
+    const chat = await client.getChatById(chatId);
+
+    if (chat.isGroup) {
+        const participants = chat.participants; // Mengambil daftar peserta grup
         if (participants.length < 2) {
             client.sendMessage(chatId, 'Grup harus memiliki setidaknya dua peserta untuk memulai permainan.');
             return;
@@ -17,11 +19,13 @@ function startRouletteGame(chatId, client) {
             winner: winner
         });
 
-        client.sendMessage(chatId, `Permainan Roulette dimulai! Siapakah yang akan menang?`);
+        client.sendMessage(chatId, `Permainan Roulette dimulai! Tunggu sebentar untuk hasilnya...`);
         setTimeout(() => {
-            client.sendMessage(chatId, `<@${winner}> adalah pemenangnya! Selamat!`);
+            client.sendMessage(chatId, `Pemenang Roulette adalah @${winner}! Selamat!`);
         }, 3000); // Menampilkan hasil pemenang setelah 3 detik
-    });
+    } else {
+        client.sendMessage(chatId, 'Perintah ini hanya dapat digunakan dalam grup.');
+    }
 }
 
 function endRouletteGame(chatId, client, message) {
@@ -31,7 +35,7 @@ function endRouletteGame(chatId, client, message) {
     }
 
     const game = activeRouletteGames.get(chatId);
-    client.sendMessage(chatId, `Permainan Roulette sudah dihentikan. Pemenang sebelumnya adalah <@${game.winner}>.`);
+    client.sendMessage(chatId, `Permainan Roulette sudah dihentikan. Pemenang sebelumnya adalah @${game.winner}.`);
     activeRouletteGames.delete(chatId);
 }
 

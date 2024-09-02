@@ -6,10 +6,8 @@ const qrcode = require('qrcode-terminal');
 const { translateText, bahasaDidukung } = require('./functions/translate');
 const sendMenu = require('./functions/menu');
 const fs = require('fs');
-const path = require('path');
 const { tagAll, hiddenTag } = require('./functions/tagall');
 const removeBackground = require('./gambar/removebg');
-const { processImage } = require('./gambar/imageHandeler');
 const { createRoom, joinRoom, startGameInRoom, endGameInRoom, handleEmojiInRoom, listRooms } = require('./games/kekompakan');
 const prayerSchedule = require('./islami/prayerSchedule');
 const hijriCalendar = require('./islami/hijriCalender');
@@ -17,6 +15,8 @@ const quran = require('./islami/quran');
 const { cckga, apakah } = require('./games/cocok');
 const { endGame, startGame, handleGuess } = require('./games/tebakAngka');
 const { endWordGuessGame, handleWordGuess, startWordGuessGame } = require('./games/tebaKata');
+const { startRouletteGame, endRouletteGame } = require('./functions/roulatte');
+const { searchLyrics } = require('./functions/lirikLagu');
 
 const config = JSON.parse(fs.readFileSync('config.json'));
 const menu = config.menu;
@@ -50,7 +50,7 @@ client.on('message', async (message) => {
     if (lowerCaseMessage.startsWith(`${prefix}${menu[9]}`)) {
         startGame(chat.id._serialized, client);
         message.reply(`Permainan Tebak Angka dimulai! Ketik ${prefix}tbkangka [angka 1 - 100].\nKetik ${prefix}udhangka untuk mengakhiri game`);
-    } else if (lowerCaseMessage.startsWith(`${prefix}*${prefix}${sub[2]}`)) {
+    } else if (lowerCaseMessage.startsWith(`${prefix}*${prefix}${sub[3]}`)) {
         const guess = parseInt(message.body.split(' ')[1]);
         if (isNaN(guess)) {
             message.reply('Silakan kirimkan angka yang valid.');
@@ -106,7 +106,7 @@ client.on('message', async (message) => {
     }
 
     //sticker
-    if (lowerCaseMessage.startsWith(`${prefix}s${menu[16]}ticker`) && message.type === 'image') {
+    if (lowerCaseMessage.startsWith(`${prefix}${menu[16]}`) && message.type === 'image') {
         const args = message.body.split(' ').map(arg => arg.trim());
         const media = await message.downloadMedia();
 
@@ -185,10 +185,31 @@ client.on('message', async (message) => {
         message.reply(`Harap kirim gambar bersama dengan perintah ${prefix}${menu[15]} untuk menghapus latar belakang.`);
     }
 
-    //clearimage
-    if (message.hasMedia && lowerCaseMessage === `${prefix}${menu[15]}`) {
-        const media = await message.downloadMedia();
-        await processImage(media, message);
+    //cari lirik lagu
+    if (lowerCaseMessage.startsWith(`${prefix}${menu[15]}`)) {
+        const query = message.body.slice(7).trim();
+        if (!query) {
+            message.reply(`Silakan masukkan sebagian lirik atau judul lagu setelah perintah ${prefix}${menu[25]}`);
+            return;
+        }
+
+        try {
+            const lyrics = await searchLyrics(query);
+            if (lyrics) {
+                message.reply(lyrics);
+            } else {
+                message.reply('Lirik tidak ditemukan.');
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 429) {
+                // Status code 429 menandakan limit API terlampaui
+                message.reply('Limit API Genius telah habis. Silakan coba lagi nanti.');
+            } else {
+                // Menangani kesalahan lain
+                console.error(error);
+                message.reply('Terjadi kesalahan saat mencari lirik.');
+            }
+        }
     }
 
     //menu
@@ -224,12 +245,12 @@ Jadwal Shalat untuk ${location}:
 - Isha: ${times.Isha}`;
             await message.reply(responseText);
         } else {
-            await message.reply('Anda belum memasukkan lokasi. Silakan gunakan perintah !setlokasi [nama kota] untuk memasukkan lokasi Anda.');
+            await message.reply(`Anda belum memasukkan lokasi. Silakan gunakan perintah ${prefix}${menu[13]} [nama kota] untuk memasukkan lokasi Anda.`);
         }
     } else if (args[0] === `${prefix}${menu[11]}`) {
         const hijriDate = await hijriCalendar.getHijriDate();
         await message.reply(`Tanggal Hijriah hari ini adalah: ${hijriDate}`);
-    } else if (lowerCaseMessage.startsWith(`${prefix}bacaquran`)) {
+    } else if (lowerCaseMessage.startsWith(`${prefix}${menu[23]}`)) {
         const params = message.body.split(' ')[1];
         if (params) {
             const [surah, ayat] = params.split(':');
@@ -237,10 +258,10 @@ Jadwal Shalat untuk ${location}:
                 const ayatText = await quran.getQuranReading(surah, ayat);
                 await message.reply(ayatText);
             } else {
-                await message.reply(`Format yang benar: ${prefix}bacaquran [surah]:[ayat]`);
+                await message.reply(`Format yang benar: ${prefix}${menu[23]} [surah]:[ayat]`);
             }
         } else {
-            await message.reply(`Silakan masukkan perintah dengan format yang benar: ${prefix}bacaquran [surah]:[ayat]`);
+            await message.reply(`Silakan masukkan perintah dengan format yang benar: ${prefix}${menu[23]} [surah]:[ayat]`);
         }
     } 
     if (message.body.startsWith(`${prefix}${menu[13]}`)) {
@@ -251,6 +272,18 @@ Jadwal Shalat untuk ${location}:
             await message.reply(`Lokasi Anda berhasil disimpan: ${location}`);
         } else {
             await message.reply(`Silakan masukkan nama kota dengan format: ${prefix}setlok [nama kota]`);
+        }
+    }
+
+    if (lowerCaseMessage.startsWith(`${prefix}${menu[24]}`)) {
+        const parts = message.body.split(' ');
+        const surahNumber = parseInt(parts[1]);
+
+        if (!isNaN(surahNumber)) {
+            const surahText = await quran.getFullSurah(surahNumber);
+            await message.reply(surahText);
+        } else {
+            await message.reply(`Silakan masukkan nomor surah dengan format: ${prefix}${menu[24]} [nomor surah]\nContoh: ${prefix}${menu[24]} 2`);
         }
     }
 });
@@ -303,7 +336,6 @@ client.on('message', async message => {
     if (chat.isGroup) {
         if (lowerCaseMessage.startsWith(`${prefix}${menu[21]}`)) {
             startRouletteGame(chat.id._serialized, client);
-            message.reply('Permainan Roulette dimulai! Tunggu sebentar untuk hasilnya...');
         } else if (lowerCaseMessage.startsWith(`${prefix}${menu[22]}`)) {
             endRouletteGame(chat.id._serialized, client, message);
         }
@@ -314,17 +346,26 @@ client.on('message', async message => {
 });
 
 //welcome
-client.on('group_join', (notification) => {
-    const { from, participants } = notification;
-    const welcomeMessage = `Selamat datang di grup, ${participants[0].name}!`;
-    client.sendMessage(from, welcomeMessage);
+client.on('group_join', async (notification) => {
+    const chat = await notification.getChat();
+    const participantId = notification.id.participant;
+    const contact = await client.getContactById(participantId);
+    const groupName = chat.name;
+    
+    await chat.sendMessage(`Selamat datang di *${groupName}* @${contact.number}`, {
+        mentions: [contact]
+    });
 });
 
 //bye-bye
-client.on('group_leave', (notification) => {
-    const { from, participants } = notification;
-    const goodbyeMessage = `Selamat tinggal, ${participants[0].name}!`;
-    client.sendMessage(from, goodbyeMessage);
+client.on('group_leave', async (notification) => {
+    const chat = await notification.getChat();
+    const participantId = notification.id.participant;
+    const contact = await client.getContactById(participantId);
+
+    await chat.sendMessage(`Selamat tinggal, @${contact.number}. Semoga sukses di tempat yang baru!`, {
+        mentions: [contact]
+    });
 });
 
 // Panggil fungsi untuk memblokir panggilan

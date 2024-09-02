@@ -5,13 +5,16 @@
   "ownerNumber": "628*********",
   "botNumber": "628yyyyyy",
   "thumbnail": "path/to/thumbnail.jpg",
+  "api": {
+    "genius_api_key": "YOUR__GENIUS_API_KEY",
+    "removeBgApiKey": "YOUR_REMOVE_BG_API_KEY"
+  },
   "menu": [
     "menu",
     "info",
     "tagall",
     "hiddentag",
     "confess",
-
     "mulaitod",
     "buatroom",
     "joinroom",
@@ -22,14 +25,16 @@
     "jadwalshalat",
     "setlok",
     "removebg",
-    "clearimg",
+    "lirik",
     "stiker",
     "kodebhs",
     "translate",
     "apakah",
     "cckga",
     "putar",
-    "stop"
+    "stop",
+    "ayatquran",
+    "surahquran"
   ],
 
   "subMenu": [
