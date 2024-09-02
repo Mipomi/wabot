@@ -12,7 +12,7 @@
 
 bot wa sederhana di buat dengan bantuan ai dan fitur seadanya, bot ini masih terdapat bug pada fungsi beberapa game nya
 
-# instalasi
+## Instalasi
 
 untuk instalasi bisa ikuti langkah-langkah berikut:
 
@@ -36,7 +36,7 @@ sebelum menjalankan `npm start` Bot ini membutuhkan beberapa pengaturan awal seb
 - genius api key dan remove bg api key dengan api key sendiri
 - sesuaikan prefix, owner name, support, owner number, dan bot number dengan sesuai keinginan
 
-# fitur yang ada
+## Fitur yang ada
 fitur grup:
 |   fitur   |                   deskripsi                       |
 |-----------|---------------------------------------------------|
@@ -72,7 +72,7 @@ fitur lainnya:
 
 Jika kamu tertarik untuk berkontribusi dalam pengembangan bot ini, silakan fork repository ini dan kirim pull request. untuk pertanyaan lebih lanjut bisa hubungi ke instagram di atas.
 
-# Terima kasih untuk:
+## Terima kasih untuk
 * chatgtp
 * ara
 * saya sendiri
