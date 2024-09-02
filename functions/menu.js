@@ -16,7 +16,6 @@ function sendMenu(client, chatId) {
 *${prefix}${menu[1]}* - Menampilkan informasi bot
 *${prefix}${menu[2]}* - untuk memanggil semua orang di grup
 *${prefix}${menu[3]}* - untuk memanggil semua orang di grup secara tersembunyi
-*${prefix}${menu[4]}* - untuk melakukan confess ke seseorang secara anonim
 \n
 *MENU GAME*
 *${prefix}${menu[5]}* - untuk memulai game Truth or Dare
@@ -35,20 +34,23 @@ _sub menu_ -> *${prefix}${sub[5]}* - untuk menyelesaikan permainan tebak kata
 *MENU ISLAMI*
 *${prefix}${menu[11]}* - melihat kalender hijriah
 *${prefix}${menu[12]}* - melihat jadwal shalat
+*${prefix}${menu[23]}* - mencari ayat Al-Qur'an
+*${prefix}${menu[24]}* - mencari surah Al-Qur'an
 *${prefix}${menu[13]}* - mengatur lokasi untuk jadwal shalat
 \n
 *MENU EDIT*
 *${prefix}${menu[14]}* - untuk menghapus background dari gambar
-*${prefix}${menu[15]}* - untuk menjernihkan gambar
 \n
 *LAINNYA*
-*${prefix}${menu[16]}* - untuk mengubah foto menjadi stiker
+*${prefix}${menu[4]}* - melakukan confess ke seseorang secara anonim
+*${prefix}${menu[16]}* - mengubah foto menjadi stiker
 *${prefix}${menu[17]}* - melihat kode bahasa
 *${prefix}${menu[18]}* - menerjemahkan bahasa
 *${prefix}${menu[19]}* - mungkin tidak mungkin dari pertanyaan
 *${prefix}${menu[20]}* - melakukan presentase, bisa juga liat kelo deket sama seseorang ~*tidak untuk serius*~
 *${prefix}${menu[21]}* - memutar roulate
 *${prefix}${menu[22]}* - menghentikan roulate
+*${prefix}${menu[15]}* - mencari lirik lagu sesuai dengan lirik atau judul
 \n
 Owner: ${config.ownerName}
 Thanks to *${config.support}* unutk penamaannya

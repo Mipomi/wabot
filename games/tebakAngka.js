@@ -16,7 +16,7 @@ function startGame(chatId, client) {
 
 function handleGuess(chatId, guess, client, message) {
     if (!activeGames.has(chatId)) {
-        message.reply(`Permainan belum dimulai. Gunakan ${prefix}gameangka untuk memulai`);
+        message.reply(`Permainan belum dimulai. Gunakan ${prefix}${config.menu[9]} untuk memulai`);
         return;
     }
 

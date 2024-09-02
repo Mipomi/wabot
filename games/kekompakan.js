@@ -1,3 +1,4 @@
+const config = JSON.parse(fs.readFileSync('./config.json'));
 const rooms = {};
 
 function isGroup(chat) {
@@ -19,7 +20,7 @@ function createRoom(groupId, userId, msg) {
         gameActive: false
     });
 
-    msg.reply(`Room ${roomId} berhasil dibuat. Silakan ajak satu orang lagi untuk bergabung dengan menggunakan perintah .joinroom ${roomId}`);
+    msg.reply(`Room ${roomId} berhasil dibuat. Silakan ajak satu orang lagi untuk bergabung dengan menggunakan perintah ${config.prefix}${config.menu[7]} ${roomId}`);
 }
 
 function joinRoom(groupId, userId, msg) {
@@ -38,7 +39,7 @@ function joinRoom(groupId, userId, msg) {
         msg.reply(`Room ${roomId} sudah penuh.`);
     } else {
         room.players.push(userId);
-        msg.reply(`Kamu berhasil bergabung ke room ${roomId}. Ketik .mulai untuk memulai permainan.`);
+        msg.reply(`Kamu berhasil bergabung ke room ${roomId}. Ketik ${config.prefix}${config.sub[0]} untuk memulai permainan.`);
     }
 }
 
