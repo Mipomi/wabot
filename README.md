@@ -73,7 +73,5 @@ fitur lainnya:
 Jika kamu tertarik untuk berkontribusi dalam pengembangan bot ini, silakan fork repository ini dan kirim pull request. untuk pertanyaan lebih lanjut bisa hubungi ke instagram di atas.
 
 ## Terima kasih untuk
-* chatgtp
-* ara
 * saya sendiri
 * dan semuanya dalam membantu pembuatan bot ini
